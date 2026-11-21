@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="Britney Mhande is a Software Engineering student in Zimbabwe who loves learning, solving problems, and building useful digital experiences.">
+  <title>Britney Mhande — Software Engineering Student</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f5f0;
+      --ink: #20231f;
+      --muted: #72766e;
+      --line: #dedfd7;
+      --green: #c8f169;
+      --green-dark: #4a6821;
+      --card: #fffefa;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--green-dark);
+      outline-offset: 4px;
+    }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(246, 245, 240, .92);
+      border-bottom: 1px solid rgba(32, 35, 31, .08);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 750;
+      letter-spacing: -.04em;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      font-family: var(--serif);
+      font-size: 18px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a {
+      color: #555950;
+      font-size: 13px;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta {
+      padding: 10px 16px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      color: var(--ink);
+    }
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .hero {
+      min-height: 610px;
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      align-items: center;
+      gap: 64px;
+      padding-block: 80px 92px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 20px;
+      color: #5d6457;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 650px;
+      margin-bottom: 22px;
+      font-family: var(--serif);
+      font-size: clamp(54px, 7.3vw, 88px);
+      font-weight: 400;
+      letter-spacing: -.065em;
+      line-height: .99;
+    }
+    h1 em { color: #657f36; font-weight: 400; }
+    .hero-copy {
+      max-width: 500px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 19px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: #394035; }
+    .button.secondary { background: transparent; color: var(--ink); }
+    .button.secondary:hover { background: white; }
+    .hero-note { margin: 22px 0 0; color: #7a7c73; font-size: 12px; }
+    .hero-art {
+      min-height: 420px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+      border-radius: 5px 120px 5px 5px;
+      background: #dce5cc;
+    }
+    .hero-art::before, .hero-art::after {
+      position: absolute;
+      border: 1px solid rgba(43, 61, 31, .2);
+      border-radius: 50%;
+      content: "";
+    }
+    .hero-art::before { width: 330px; height: 330px; right: -75px; top: 52px; }
+    .hero-art::after { width: 240px; height: 240px; right: -28px; top: 98px; }
+    .art-top, .art-bottom { position: relative; z-index: 1; }
+    .art-top { display: flex; justify-content: space-between; color: #536044; font-size: 11px; }
+    .art-spark {
+      position: absolute;
+      top: 50%;
+      left: 47%;
+      color: #708746;
+      font-size: 104px;
+      line-height: 1;
+      transform: translate(-50%, -50%) rotate(-12deg);
+    }
+    .art-card {
+      width: fit-content;
+      max-width: 255px;
+      padding: 17px 19px;
+      border: 1px solid rgba(32, 35, 31, .1);
+      border-radius: 3px;
+      background: rgba(255, 254, 250, .85);
+      box-shadow: 0 12px 30px rgba(34, 44, 24, .08);
+    }
+    .art-card small { display: block; margin-bottom: 6px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .13em; }
+    .art-card strong { font-family: var(--serif); font-size: 20px; font-weight: 400; }
+    .art-bottom { display: flex; align-items: end; justify-content: space-between; }
+    .art-bottom p { max-width: 185px; margin: 0; color: #546049; font-size: 12px; }
+    .art-number { color: #63754d; font-family: var(--serif); font-size: 38px; }
+    .section { padding-block: 96px; border-top: 1px solid var(--line); }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 42px;
+    }
+    .section-heading h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(38px, 5vw, 56px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: 1.05;
+    }
+    .section-intro { max-width: 360px; margin: 0; color: var(--muted); font-size: 14px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; }
+    .about-copy p { max-width: 520px; color: #62665d; }
+    .about-copy p:last-child { margin-bottom: 0; }
+    .goal-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+    .goal-card .star { color: #718b42; font-size: 24px; }
+    .goal-card small { color: var(--muted); letter-spacing: .14em; text-transform: uppercase; }
+    .goal-card blockquote {
+      max-width: 410px;
+      margin: 24px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 34px);
+      letter-spacing: -.035em;
+      line-height: 1.25;
+    }
+    .facts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 27px; }
+    .fact { padding: 12px 15px; border: 1px solid var(--line); color: #62665d; font-size: 12px; }
+    .fact strong { display: block; margin-bottom: 2px; color: var(--ink); font-size: 13px; }
+    .skills-layout { display: grid; grid-template-columns: 1.2fr .8fr; gap: 54px; }
+    .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .skill-card {
+      min-height: 130px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+    .skill-icon {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: #eaf1dd;
+      color: #526a2e;
+      font-size: 11px;
+      font-weight: 750;
+    }
+    .skill-card strong { display: block; margin-bottom: 3px; font-size: 13px; }
+    .skill-card span:last-child { color: var(--muted); font-size: 11px; }
+    .soft-skills { padding: 23px; background: #e9ebdf; }
+    .soft-skills h3 { margin: 0 0 17px; font-family: var(--serif); font-size: 23px; font-weight: 400; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 7px 10px; border: 1px solid #d2d6c6; border-radius: 999px; color: #53594c; font-size: 11px; }
+    .projects { background: #eeeee7; }
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .project-card {
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      border: 1px solid #dedfd7;
+      background: var(--card);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(34, 38, 29, .07); }
+    .project-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 40px; }
+    .project-kicker { color: #657151; font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .project-index { color: #9a9d92; font-family: var(--serif); font-size: 14px; }
+    .project-card h3 { margin: 0 0 10px; font-family: var(--serif); font-size: 27px; font-weight: 400; letter-spacing: -.04em; }
+    .project-card p { margin-bottom: 18px; color: var(--muted); font-size: 13px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+    .project-tags span { padding: 5px 8px; background: #f0f1eb; color: #62665d; font-size: 10px; }
+    .project-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 18px; color: #536b31; font-size: 12px; font-weight: 700; text-decoration: none; }
+    .project-link:hover { text-decoration: underline; }
+    .contact-section { padding-block: 90px; }
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(32px, 7vw, 74px);
+      background: var(--ink);
+      color: white;
+    }
+    .contact-card::after {
+      position: absolute;
+      top: -128px;
+      right: -100px;
+      width: 380px;
+      height: 380px;
+      border: 1px solid rgba(200, 241, 105, .35);
+      border-radius: 50%;
+      box-shadow: 0 0 0 36px rgba(200, 241, 105, .06), 0 0 0 72px rgba(200, 241, 105, .04);
+      content: "";
+      pointer-events: none;
+    }
+    .contact-card .eyebrow { color: #c8d6ad; }
+    .contact-card h2 {
+      position: relative;
+      z-index: 1;
+      max-width: 660px;
+      margin-bottom: 16px;
+      font-family: var(--serif);
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 400;
+      letter-spacing: -.06em;
+      line-height: 1;
+    }
+    .contact-card > p:not(.eyebrow) { position: relative; z-index: 1; max-width: 490px; margin-bottom: 27px; color: #c0c3ba; }
+    .contact-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 12px; }
+    .contact-card .button { position: relative; z-index: 1; border-color: var(--green); background: var(--green); color: var(--ink); }
+    .contact-card .button:hover { background: #d9ff8a; }
+    .contact-card .button.secondary { border-color: #777e70; background: transparent; color: white; }
+    .contact-card .button.secondary:hover { border-color: white; background: rgba(255, 255, 255, .08); }
+    .share-status { position: relative; z-index: 1; min-height: 20px; margin: 10px 0 0; color: #cbd3c0; font-size: 12px; }
+    button.button { cursor: pointer; font-family: inherit; }
+    .site-footer { padding-block: 23px; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: var(--muted); font-size: 11px; }
+    .footer-inner p { margin: 0; }
+    .footer-brand { color: var(--ink); font-weight: 700; text-decoration: none; }
+    .footer-note { text-align: right; }
+    @media (max-width: 800px) {
+      .hero { min-height: auto; grid-template-columns: 1fr  .8fr; gap: 30px; padding-block: 66px 72px; }
+      .hero-art { min-height: 350px; }
+      .about-grid, .skills-layout { gap: 32px; }
+      .project-card { padding: 20px; }
+      .project-card h3 { font-size: 23px; }
+    }
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 36px, 480px); }
+      .nav { min-height: 66px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: absolute;
+        top: 65px;
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 18px 18px;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .nav-links.open { display: flex; flex-direction: column; }
+      .nav-links a { padding: 12px 4px; }
+      .nav-links .nav-cta { margin-top: 7px; padding-inline: 14px; text-align: center; }
+      .hero { grid-template-columns: 1fr; gap: 35px; padding-block: 56px 58px; }
+      h1 { font-size: clamp(56px, 16vw, 78px); }
+      .hero-copy { font-size: 15px; }
+      .hero-art { min-height: 320px; border-top-right-radius: 94px; }
+      .section { padding-block: 68px; }
+      .section-heading { align-items: start; flex-direction: column; gap: 13px; margin-bottom: 30px; }
+      .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 28px; }
+      .skill-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card { min-height: 280px; }
+      .project-meta { margin-bottom: 28px; }
+      .contact-section { padding-block: 60px; }
+      .contact-card::after { right: -245px; opacity: .7; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      .footer-note { text-align: left; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Britney Mhande, home">
+        <span class="brand-mark" aria-hidden="true">B.</span>
+        <span>Britney Mhande</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a class="nav-cta" href="#contact">Let's connect <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div>
+        <p class="eyebrow">Hello, world!</p>
+        <h1>I'm Britney<br><em>Mhande.</em></h1>
+        <p class="hero-copy">I'm a Software Engineering student at Bindura University. I like taking apart tricky problems, learning how things work, and turning small ideas into useful projects.</p>
+        <div class="actions">
+          <a class="button" href="#projects">Explore my projects <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="#contact">Let's connect</a>
+        </div>
+        <p class="hero-note">Learning patiently, building thoughtfully, improving every day.</p>
+      </div>
+      <div class="hero-art" aria-label="A small note about Britney's learning journey">
+        <div class="art-top"><span>LEARN · BUILD · REPEAT</span><span>01 / 04</span></div>
+        <div class="art-card">
+          <small>One project at a time</small>
+          <strong>Growing with every challenge</strong>
+        </div>
+        <div class="art-bottom">
+          <p>Every day is a chance to learn something new and make it real.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">A little about me</p>
+            <h2>Learning by<br>doing.</h2>
+          </div>
+          <p class="section-intro">I'm most interested in making technology feel useful, clear, and helpful in everyday life.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>I'm Britney. I'm currently studying Software Engineering at Bindura University, and much of what I know has come from staying curious and trying things out for myself.</p>
+            <p>I enjoy working with other people, asking questions, and finding practical solutions. I'm now looking for opportunities to learn from experienced developers and contribute to projects that matter.</p>
+            <div class="facts">
+              <div class="fact"><strong>🎓 Student</strong>Software Engineering</div>
+              <div class="fact"><strong>📍 Zimbabwe</strong>Open to opportunities</div>
+            </div>
+          </div>
+          <div class="goal-card">
+            <div>
+              <small>My goal</small>
+              <blockquote>To build technology that makes people's lives easier.</blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Code · learn · grow</p>
+            <h2>My skills.</h2>
+          </div>
+          <p class="section-intro">Tools and skills I'm developing through coursework and hands-on practice.</p>
+        </div>
+        <div class="skills-layout">
+          <div class="skill-grid">
+            <div class="skill-card"><span class="skill-icon">Py</span><strong>Python</strong><span>Programming basics</span></div>
+            <div class="skill-card"><span class="skill-icon">☕</span><strong>Java</strong><span>Object-oriented programming</span></div>
+            <div class="skill-card"><span class="skill-icon">C++</span><strong>C++</strong><span>OOP foundations</span></div>
+            <div class="skill-card"><span class="skill-icon">5</span><strong>HTML &amp; CSS</strong><span>Structure &amp; styling</span></div>
+            <div class="skill-card"><span class="skill-icon">JS</span><strong>JavaScript</strong><span>Interactive web basics</span></div>
+            <div class="skill-card"><span class="skill-icon">DB</span><strong>MySQL</strong><span>Database fundamentals</span></div>
+          </div>
+          <aside class="soft-skills">
+            <h3>Beyond the code</h3>
+            <div class="tags">
+              <span class="tag">Problem solving</span>
+              <span class="tag">Time management</span>
+              <span class="tag">Teamwork</span>
+              <span class="tag">Communication</span>
+              <span class="tag">Curiosity</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Things I've built</p>
+            <h2>Featured projects.</h2>
+          </div>
+          <p class="section-intro">A few projects and ideas I've explored during my learning journey.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-meta"><span class="project-kicker">Safer journeys · Student project</span><span class="project-index">01</span></div>
+            <h3>Safe Transit</h3>
+            <p>A concept to help public-transport travellers improve safety by addressing risky driving behaviours like harsh braking, speeding, and swerving.</p>
+            <div class="project-tags"><span>Safety</span><span>Problem solving</span></div>
+            <a class="project-link" href="#contact">Ask me about this project <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project-card">
+            <div class="project-meta"><span class="project-kicker">Learning made simple · Web concept</span><span class="project-index">02</span></div>
+            <h3>Primary School Website</h3>
+            <p>A website concept for a primary school with information for Grades 1–7, learners, and teachers.</p>
+            <div class="project-tags"><span>HTML</span><span>CSS</span><span>Web design</span></div>
+            <a class="project-link" href="#contact">Ask me about this project <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="project-card">
+            <div class="project-meta"><span class="project-kicker">Organise &amp; track · Course project</span><span class="project-index">03</span></div>
+            <h3>Student Management System</h3>
+            <p>A simple prototype for registering students, managing courses, and handling enrolments with validation.</p>
+            <div class="project-tags"><span>Java / Python</span><span>Data</span><span>OOP</span></div>
+            <a class="project-link" href="#contact">Ask me about this project <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section wrap" id="contact">
+      <div class="contact-card">
+        <p class="eyebrow">Have an opportunity?</p>
+        <h2>Let's build something meaningful.</h2>
+        <p>Would you like to work together, share an opportunity, or simply say hello? I'd be happy to hear from you.</p>
+        <div class="contact-actions">
+          <a class="button" href="mailto:britneymhande1@gmail.com?subject=Software%20Engineering%20Opportunity&amp;body=Hi%20Britney%2C%0A%0AI'm%20interested%20in%20connecting%20with%20you%20about%20a%20Software%20Engineering%20opportunity.%0A%0A">Email me <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="https://wa.me/263781135422?text=Hi%20Britney%2C%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="tel:+263781135422" aria-label="Call Britney at +263 781 135 422">Call +263 781 135 422</a>
+          <button class="button secondary" id="share-portfolio" type="button">Share portfolio <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p><a class="footer-brand" href="#home">Britney Mhande</a></p>
+      <p class="footer-note">Designed with care · Built with curiosity<br>© <span id="year">2026</span> Britney Mhande</p>
+    </div>
+  </footer>
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
+      navLinks.classList.toggle("open", !isOpen);
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open menu");
+      }
+    });
+
+    const shareButton = document.querySelector("#share-portfolio");
+    const shareStatus = document.querySelector("#share-status");
+
+    shareButton.addEventListener("click", async () => {
+      const portfolioUrl = window.location.protocol === "file:"
+        ? "Please publish this portfolio online, then share its public link."
+        : window.location.href;
+      const shareData = {
+        title: "Britney Mhande — Portfolio",
+        text: "Take a look at Britney Mhande's Software Engineering portfolio.",
+        url: portfolioUrl
+      };
+
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+          shareStatus.textContent = "Thanks for sharing!";
+        } else if (navigator.clipboard) {
+          await navigator.clipboard.writeText(portfolioUrl);
+          shareStatus.textContent = "Portfolio link copied.";
+        } else {
+          window.prompt("Copy this portfolio link:", portfolioUrl);
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          shareStatus.textContent = "Could not share the link. Please copy it from your address bar.";
+        }
+      }
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
